@@ -1,5 +1,5 @@
 import boto3
-
+import datetime
 # import from elsewhere
 # Django "settings" module
 
@@ -24,7 +24,7 @@ class AWS:
 
     def get_s3_client(self):
         if self.s3_client == None:
-            s3_client = boto.client('s3',
+            s3_client = boto3.client('s3',
                     aws_access_key_id=self.access_key,
                     aws_secret_access_key=self.secret_key,
                     region_name = self.region
@@ -34,7 +34,7 @@ class AWS:
 
     def get_session(self):
         if self.session == None:
-            session = boto.Session(
+            session = boto3.Session(
                     aws_access_key_id=self.access_key,
                     aws_secret_access_key=self.secret_key,
                     region_name = self.region
@@ -66,7 +66,7 @@ class AWS:
                     'Bucket': self.bucket,
                     'Key': key
                 },
-                ExpiresIn=datetime.timedetla(hours=10).total_seconds()
+                ExpiresIn=datetime.timedelta(hours=10).total_seconds()
                 )
         return url
 
@@ -74,7 +74,7 @@ class AWS:
         return 
 
 
-# AWS().get_download_url()
-# AWS().get_download_url()
+# AWS().get_download_url(key='1.png')
+# AWS().get_download_url(key='upload.png')
 # AWS().get_download_url()
 
