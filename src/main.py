@@ -83,7 +83,7 @@ class AWS:
         s3_client = self.get_s3_client()
         if s3_client is None:
             return ""
-        data = s3_client.generated_presigned_post(
+        data = s3_client.generate_presigned_post(
                 Bucket = self.bucket,
                 Key = key,
                 Fields= fields,
